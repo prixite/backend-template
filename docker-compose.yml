@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - ./env/db.env
+
+  api:
+    build: .
+    env_file:
+      - ./env/db.env
+      - ./env/api.env
+    volumes:
+      - .:/opt/soccer
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    command: bash ./scripts/runserver.sh
+
+  cache:
+    image: memcached:1.6.6-alpine
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5462:5462"
+      - "15672:15672"
+
+  celery:
+    build: .
+    env_file:
+      - ./env/db.env
+      - ./env/api.env
+    volumes:
+      - .:/opt/soccer
+    command: ./scripts/run-celery.sh
+    depends_on:
+      - db
+      - rabbitmq

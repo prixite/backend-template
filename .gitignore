@@ -1,0 +1,11 @@
+*.swp
+.django
+.drf
+env/db.env
+env/api.env
+prod/env/db.env
+prod/env/api.env
+.coverage
+htmlcov
+.DS_Store
+emails

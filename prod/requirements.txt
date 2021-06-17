@@ -1,0 +1,11 @@
+Django==3.2.3
+psycopg2==2.8.6
+djangorestframework==3.12.4
+pycountry==20.7.3
+gunicorn==20.1.0
+Faker==8.4.0
+uritemplate==3.0.1
+PyYAML==5.4.1
+django-debug-toolbar==3.2.1
+pymemcache==3.4.4
+celery==5.1.0
