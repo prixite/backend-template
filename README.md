@@ -1,4 +1,4 @@
-# Fantasy Soccer Manager
+# Backend Template For Django
 
 This application uses micro-services architecture. Here is the list of different
 services we use in dev environment:
