@@ -49,33 +49,3 @@ class IsNotDefaultUser(permissions.BasePermission):
                 request.user.email == SIGNUP_USER):
             return False
         return True
-
-
-class TeamPermission(permissions.IsAuthenticated):
-    def has_permission(self, request, view):
-        is_auth = super().has_permission(request, view)
-        if not is_auth:
-            return False
-
-        if request.user.is_staff:
-            return True
-
-        if request.method in ['POST', 'DELETE']:
-            return False
-
-        return True
-
-
-class PlayerPermission(permissions.IsAuthenticated):
-    def has_permission(self, request, view):
-        is_auth = super().has_permission(request, view)
-        if not is_auth:
-            return False
-
-        if request.user.is_staff:
-            return True
-
-        if request.method in ['POST', 'DELETE']:
-            return False
-
-        return True

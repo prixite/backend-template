@@ -39,28 +39,6 @@ following users in the DB:
 - **Default User** - Creds: signup@example.com/soccer
 
 
-You can generate fake data by running the following command:
-
-```
-docker-compose exec api bash
-./manange.py generate_league
-```
-
-You can create fake transfers by running the following command:
-
-```
-docker-compose exec api bash
-./manage.py transfer_random_players
-```
-
-You can run simulation of the league by doing:
-
-```
-docker-compose exec api bash
-./manage.py simulate
-```
-
-
 ## Production Deployment
 Production deployment is also done using Docker. All the files associated with
 prod deployment are present in prod folder. To start prod build, do:
@@ -147,16 +125,3 @@ There are 4 permission levels in this application:
    admin.
 4. *Admin* - We send auth token belonging to admins. This has unrestricted
    access to APIs.
-
-## Important Business Logic
-* API is not available publicly. You will have to login to access data.
-  Initially, token of default user will be shared with the frontend.
-* Once user logs in, they will be provided with the token associated with their
-  account.
-* When user signs up, they will be sent a verification email. Email will be
-  verified when user clicks the link in the email.
-* Admin can access all data through API.
-* Use can only access their own data.
-* Default user cannot access any data.
-* Search queries are backed by indexes.
-* Email is sent using Celery.

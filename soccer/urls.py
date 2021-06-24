@@ -1,5 +1,3 @@
-"""soccer URL Configuration
-"""
 import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
@@ -11,9 +9,6 @@ from core import views
 
 router = routers.DefaultRouter()
 router.register('users', views.UserViewSet)
-router.register('teams', views.TeamViewSet)
-router.register('players', views.PlayerViewSet)
-router.register('transfers', views.TransferViewSet)
 router.register('countries', views.CountryViewSet, basename='countries')
 
 urlpatterns = [
@@ -26,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('openapi/', get_schema_view(
         title="Soccer Fantasy League",
-        description="Buy/Sell Players. Become a seccussful team.",
+        description="Backend Template For DRF",
         version="1.0.0"
     ), name='openapi-schema'),
     path('docs/', TemplateView.as_view(
