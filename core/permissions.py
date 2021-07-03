@@ -16,7 +16,7 @@ class UserPermission(permissions.BasePermission):
         if request.user.is_staff:
             return True
 
-        post_allowed_actions = ['email']
+        post_allowed_actions = ['start_email_verification']
         action_allowed = view.action not in post_allowed_actions
 
         if request.method == 'POST' and action_allowed:

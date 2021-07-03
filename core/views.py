@@ -29,8 +29,9 @@ class UserViewSet(viewsets.ModelViewSet):
     @action(
         detail=True,
         methods=['post'],
+        url_path=r'email/verification/',
     )
-    def email(self, request, *args, **kwargs):
+    def start_email_verification(self, request, *args, **kwargs):
         user = self.get_object()
         user.send_verification_email()
         return Response(status=200)
@@ -79,7 +80,7 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'signup':
             return SignupSerializer
-        elif self.action in ['admin', 'send_link']:  # pragma: no cover  # noqa
+        elif self.action in ['admin', 'start_email_verification']:  # pragma: no cover  # noqa
             # This block is for swagger documentation. It will not be used by
             # the code. Hence, the no-cover.
             return EmptySerializer

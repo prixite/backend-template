@@ -195,32 +195,32 @@ class UserTestCase(BaseTestCase):
         response = self.client.delete(url)
         self.assertOK(response)
 
-    def test_send_link_unauth(self):
-        url = reverse('user-email', args=[self.owner.id])
+    def test_start_email_verification_unauth(self):
+        url = reverse('user-start-email-verification', args=[self.owner.id])
         response = self.post_json(url)
         self.assert401(response)
 
-    def test_send_link_default(self):
+    def test_start_email_verification_default(self):
         self.login(SIGNUP_USER)
-        url = reverse('user-email', args=[self.owner.id])
+        url = reverse('user-start-email-verification', args=[self.owner.id])
         response = self.post_json(url)
         self.assert403(response)
 
-    def test_send_link_auth(self):
+    def test_start_email_verification_auth(self):
         self.login(self.owner.email)
-        url = reverse('user-email', args=[self.owner.id])
+        url = reverse('user-start-email-verification', args=[self.owner.id])
         response = self.post_json(url)
         self.assertOK(response)
 
-    def test_send_link_auth_different_user(self):
+    def test_start_email_verification_auth_different_user(self):
         self.login('owner@example.com')
-        url = reverse('user-email', args=[self.owner.id])
+        url = reverse('user-start-email-verification', args=[self.owner.id])
         response = self.post_json(url)
         self.assert404(response)
 
-    def test_send_link_admin(self):
+    def test_start_email_verification_admin(self):
         self.login('admin@example.com')
-        url = reverse('user-email', args=[self.owner.id])
+        url = reverse('user-start-email-verification', args=[self.owner.id])
         response = self.post_json(url)
         self.assertOK(response)
 
