@@ -1,5 +1,5 @@
+from app import celery
 from core.models import User
-from soccer import celery
 
 
 @celery.app.task

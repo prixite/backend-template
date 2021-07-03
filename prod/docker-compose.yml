@@ -14,7 +14,7 @@ services:
       - ./env/db.env
       - ./env/api.env
     volumes:
-      - static_volume:/opt/soccer/static
+      - static_volume:/opt/code/static
       - shm:/dev/shm
     ports:
       - "8000:8000"
@@ -28,7 +28,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - static_volume:/opt/soccer/static
+      - static_volume:/opt/code/static
       - shm:/dev/shm
     depends_on:
       - api

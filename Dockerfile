@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install pip==21.1.2
 
-WORKDIR /opt/soccer
+WORKDIR /opt/code
 
 COPY prod/requirements.txt prod/requirements.txt
 COPY requirements.txt requirements.txt

@@ -3,7 +3,7 @@ branch = True
 omit =
     core/migrations/*
     core/management/commands/*
-    soccer/*
+    app/*
     core/admin.py
     manage.py
 
