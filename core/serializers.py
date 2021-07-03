@@ -7,6 +7,8 @@ from core.tasks import send_verification_email
 
 
 class UserAdminSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, write_only=True)
+
     class Meta:
         model = User
         fields = [
@@ -36,6 +38,8 @@ class UserAdminSerializer(serializers.ModelSerializer):
 
 
 class SignupSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, write_only=True)
+
     class Meta:
         model = User
         fields = [
@@ -58,6 +62,8 @@ class SignupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, write_only=True)
+
     class Meta:
         model = User
         fields = [
