@@ -56,7 +56,10 @@ class EmailVerification(models.Model):
 
     def send_verification_link(self):
         code = self.code
-        path = reverse('user-verify', args=[self.user.id, code])
+        path = reverse(
+            'user-complete-email-verification',
+            args=[self.user.id, code],
+        )
         link = f'http://{settings.DOMAIN}{path}'
         context = {
             'verification_link': link,

@@ -148,7 +148,10 @@ class VerifyTestCase(BaseTestCase):
         self.assertFalse(user.email_verification.is_verified)
 
         code = user.email_verification.code
-        verification_url = reverse('user-verify', args=[user.id, code])
+        verification_url = reverse(
+            'user-complete-email-verification',
+            args=[user.id, code],
+        )
         self.client.get(verification_url)
 
         user.email_verification.refresh_from_db()

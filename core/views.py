@@ -47,9 +47,9 @@ class UserViewSet(viewsets.ModelViewSet):
         detail=True,
         methods=['get'],
         permission_classes=[permissions.AllowAny],
-        url_path=r'verify/(?P<code>\w+)',
+        url_path=r'email/verification/(?P<code>\w+)',
     )
-    def verify(self, request, *args, **kwargs):
+    def complete_email_verification(self, request, *args, **kwargs):
         user = self.get_object()
         code = kwargs['code']
         user.verify_email(code)
@@ -92,7 +92,7 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.request.user
         queryset = super().get_queryset()
 
-        if self.action == 'verify':
+        if self.action == 'complete_email_verification':
             return queryset
 
         if not user.is_staff:

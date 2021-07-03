@@ -250,34 +250,46 @@ class UserTestCase(BaseTestCase):
         response = self.post_json(url, data=data)
         self.assertOK(response)
 
-    def test_verify_unauth(self):
+    def test_complete_email_verification_unauth(self):
         self.owner.send_verification_email()
         code = self.owner.email_verification.code
-        url = reverse('user-verify', args=[self.owner.id, code])
+        url = reverse(
+            'user-complete-email-verification',
+            args=[self.owner.id, code],
+        )
         response = self.client.get(url)
         self.assertOK(response)
 
-    def test_verify_default(self):
+    def test_complete_email_verification_default(self):
         self.login(SIGNUP_USER)
         self.owner.send_verification_email()
         code = self.owner.email_verification.code
-        url = reverse('user-verify', args=[self.owner.id, code])
+        url = reverse(
+            'user-complete-email-verification',
+            args=[self.owner.id, code],
+        )
         response = self.client.get(url)
         self.assertOK(response)
 
-    def test_verify_auth(self):
+    def test_complete_email_verification_auth(self):
         self.login(self.owner.email)
         self.owner.send_verification_email()
         code = self.owner.email_verification.code
-        url = reverse('user-verify', args=[self.owner.id, code])
+        url = reverse(
+            'user-complete-email-verification',
+            args=[self.owner.id, code],
+        )
         response = self.client.get(url)
         self.assertOK(response)
 
-    def test_verify_admin(self):
+    def test_complete_email_verification_admin(self):
         self.login('admin@example.com')
         self.owner.send_verification_email()
         code = self.owner.email_verification.code
-        url = reverse('user-verify', args=[self.owner.id, code])
+        url = reverse(
+            'user-complete-email-verification',
+            args=[self.owner.id, code],
+        )
         response = self.client.get(url)
         self.assertOK(response)
 
