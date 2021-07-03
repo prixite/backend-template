@@ -31,7 +31,7 @@ docker-compose up -d
 You can access the application at http://localhost:8000/
 
 
-## Fake Data and Simulation
+## Fake Data
 When you run the application in development environment, you can expect the
 following users in the DB:
 - **Superadmin** - Creds: admin@example.com/admin
