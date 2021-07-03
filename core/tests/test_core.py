@@ -122,7 +122,7 @@ class UserTestCase(BaseTestCase):
         self.login_admin()
         user = User.objects.get(email=self.user)
         self.assertEqual(len(mail.outbox), 0)
-        url = reverse('user-send-link', args=[user.id])
+        url = reverse('user-email', args=[user.id])
         response = self.post_json(url)
         self.assertOK(response)
         self.assertEqual(len(mail.outbox), 1)

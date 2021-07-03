@@ -30,7 +30,7 @@ class UserViewSet(viewsets.ModelViewSet):
         detail=True,
         methods=['post'],
     )
-    def send_link(self, request, *args, **kwargs):
+    def email(self, request, *args, **kwargs):
         user = self.get_object()
         user.send_verification_email()
         return Response(status=200)
